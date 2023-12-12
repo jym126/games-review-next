@@ -1,36 +1,42 @@
 import { Nav } from "../components/Nav"
+import Cards from "../components/Cards";
+
+import { ClassNames } from "@emotion/react";
 
 
-export default function Page() {
-  return (
-    <>
-    <Nav/>
-    <>
-    <div>
-        <h1 class="text-5xl flex justify-center">News</h1>
-        
-    </div>
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img
-          class="rounded-t-lg"
-          src="https://res.cloudinary.com/dmimages/image/upload/v1661801395/girl_warrior_xxt6by.jpg"
-          alt="profile"
-        />
-      </a>
-      <div class="p-5">
-        <a href="#">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Noteworthy technology acquisitions 2021
-          </h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
-        </p>
-      </div>
-    </div>
-    </>
-    </>
-  )
+export default async function Page() {
+
+  const res = await fetch('https://api.rawg.io/api/games?key=0f37c1fbe7294b1fa22d0a8742173d98', {
+    next: {tags: ['collection']},
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+
+  });
+
+  const valor = {};
+  const games = await res.json();
+  const result = games.results.map((valor:any) => valor)
+
+return (
+  <>
+  <div>
+  <Nav/>
+  <h1 className="flex justify-center text-3xl">Available Games</h1>
+  </div>
+  <div className="flex flex-wrap">
+      {result.map(game => {
+        return(
+          <Cards game = {game}/>
+
+        )
+      })
+    }
+      
+  </div>
+  </>
+)
+
 }
