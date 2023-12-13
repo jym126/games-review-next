@@ -3,24 +3,22 @@ import { useState } from 'react';
 
 export default function Form() {
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState(0)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/SendName', {
-        method: "POST",
+      const response = await fetch(`/Search?name=${name}`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
+        }
       });
 
       if (response.ok) {
         // Handle success
         console.log('Name added successfully');
-        // Optionally, you can reset the name state here
-        setName('');
+
       } else {
         // Handle errors
         console.error('Error adding name');
@@ -34,14 +32,15 @@ export default function Form() {
     <div>
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">Search</label>
-      <input id="name"
+      <input className='text-black' id="name"
             name="name"
-            type="text"
+            type="number"
             value={name}
             onChange={(e) => setName(e.target.value)}
       />
       <button type="submit">Submit</button>
     </form>
+    <h1 className='text-white'>{name}</h1>
   </div>
   
   )
