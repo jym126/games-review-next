@@ -3,12 +3,12 @@ import { useState } from 'react';
 
 export default function Form() {
 
-  const [name, setName] = useState(0)
+  const [id, setId] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`/Search?name=${name}`, {
+      const response = await fetch(`/Search?id=${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,12 +35,11 @@ export default function Form() {
       <input className='text-black' id="name"
             name="name"
             type="number"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={id}
+            onChange={(e) => setId(e.target.value)}
       />
       <button type="submit">Submit</button>
     </form>
-    <h1 className='text-white'>{name}</h1>
   </div>
   
   )

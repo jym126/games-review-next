@@ -14,7 +14,7 @@ const CreateForm = () => {
 
   const handleSubmit = async (id) => {
     try {
-      const response = await fetch(`/SearchForm?id=${id}`, {
+      const response = await fetch(`/Search?id=${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -22,6 +22,7 @@ const CreateForm = () => {
       });
       
       if (response.ok) {
+        console.log(response);
         setResult(response);
 
       } else {
@@ -35,7 +36,7 @@ const CreateForm = () => {
     
 
     const myId = Number(id);
-
+    console.log(myId);
   const res = await fetch(
     `https://api.rawg.io/api/games/${myId}?key=0f37c1fbe7294b1fa22d0a8742173d98`,
     {
@@ -58,7 +59,7 @@ const CreateForm = () => {
         <Nav />
         <h1 className="flex justify-center text-3xl">Find Game</h1>
 
-        <SearchForm/>
+        <SearchForm onSubmit={handleSubmit}/>
 
         <div className="flex justify-center">
           {valor.map((game) => {
