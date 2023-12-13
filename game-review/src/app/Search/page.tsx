@@ -5,7 +5,7 @@ import { useState } from "react";
 import { NextResponse } from "next/server";
 import Cards from "../components/Cards";
 import Form from "../Form/page";
-import SearchForm from './components/SearchForm';
+import SearchForm from "../SearchForm/page";
 
 const CreateForm = () => {
 
@@ -14,7 +14,7 @@ const CreateForm = () => {
 
   const handleSubmit = async (id) => {
     try {
-      const response = await fetch(`/Search?id=${id}`, {
+      const response = await fetch(`/SearchForm?id=${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const CreateForm = () => {
         <Nav />
         <h1 className="flex justify-center text-3xl">Find Game</h1>
 
-        <Form />
+        <SearchForm/>
 
         <div className="flex justify-center">
           {valor.map((game) => {
