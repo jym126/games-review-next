@@ -62,7 +62,11 @@ const CreateForm = () => {
         <SearchForm onSubmit={handleSubmit}/>
 
         <div className="flex justify-center">
-
+          {valor.map((game) => {
+            return (
+              <Cards game = {game}/>
+            );
+          })}
         </div>
       </div>
     </>
