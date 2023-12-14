@@ -64,7 +64,7 @@ const CreateForm = () => {
         <div className="flex justify-center">
           {valor.map((game) => {
             return (
-              <Cards game = {game}/>
+              <Cards game = {game}  key={game.id}/>
             );
           })}
         </div>

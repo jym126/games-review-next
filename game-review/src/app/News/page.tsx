@@ -29,7 +29,7 @@ return (
   <div className="flex flex-wrap">
       {result.map(game => {
         return(
-          <Cards game = {game}/>
+          <Cards game = {game}  key={game.id}/>
 
         )
       })
