@@ -69,7 +69,7 @@ const CreateForm = () => {
         <SearchForm onSubmit={handleSubmit}/>
 
         <div className="flex justify-center">
-          {valor.map((game) => {
+          {valor.map((game: any) => {
             return (
               <Card key={game.id} game = {game} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
               <CardMedia

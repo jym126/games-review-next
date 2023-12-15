@@ -33,7 +33,7 @@ return (
   <h1 className="flex justify-center text-3xl">Available Games</h1>
   </div>
   <div className="flex flex-wrap">
-      {result.map(game => {
+      {result.map((game: any) => {
         return(
           <Card key={game.id} game = {game} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
     <CardMedia
