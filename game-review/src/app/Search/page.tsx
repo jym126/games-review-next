@@ -78,7 +78,7 @@ const CreateForm = () => {
                 height="140"
                 image ={game.background_image}
               />
-              <CardContent>
+              <CardContent key={game.id}>
                 <Typography gutterBottom variant="h5" component="div">
                   {game.name}
                 </Typography>
