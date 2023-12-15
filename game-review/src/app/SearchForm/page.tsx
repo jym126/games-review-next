@@ -2,7 +2,7 @@
 // components/SearchForm.tsx
 import { useState } from 'react';
 
-const SearchForm = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit:any }) => {
   const [id, setId] = useState('');
 
   const handleSubmit = (e) => {
