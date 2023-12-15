@@ -7,7 +7,7 @@ import { Nav } from "../components/Nav"
         <>
         <Nav/>
         <div>
-        <h1 class="text-5xl flex justify-center">Favorites</h1>
+        <h1 className="text-5xl flex justify-center">Favorites</h1>
         
     </div>
          </>
