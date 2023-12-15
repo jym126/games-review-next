@@ -71,7 +71,7 @@ const CreateForm = () => {
         <div className="flex justify-center">
           {valor.map((game: any) => {
             return (
-              <Card key={game.id} game = {game} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
+              <Card key={game.id} game = {game} className="m-2 rounded-xl max-w-xs">
               <CardMedia
                 component="img"
                 alt='game cards'
