@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "watch": "./node_modules/.bin/webpack --watch --config webpack.dev.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next dev",
