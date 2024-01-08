@@ -33,9 +33,9 @@ return (
   <h1 className="flex justify-center text-3xl">Available Games</h1>
   </div>
   <div className="flex flex-wrap">
-      {result.map((game:any) => {
+      {result.map(game => {
         return(
-          <Card key={game.id} game = {game} className="m-2 rounded-xl max-w-xs">
+          <Card key={game.id} className="m-2 rounded-xl max-w-xs">
     <CardMedia
       component="img"
       alt='game cards'
