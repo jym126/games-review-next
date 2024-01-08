@@ -12,7 +12,10 @@ import Typography from '@mui/material/Typography';
 
 export default async function Page() {
 
-  const res = await fetch('https://api.rawg.io/api/games?key=0f37c1fbe7294b1fa22d0a8742173d98', {
+  const url = process.env.url;
+  const key = process.env.apiKey;
+
+  const res = await fetch(`${url}?key=0f37c1fbe7294b1fa22d0a8742173d98`, {
     next: {tags: ['collection']},
     headers: {
       'Access-Control-Allow-Origin': '*',

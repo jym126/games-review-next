@@ -14,7 +14,10 @@ import Typography from '@mui/material/Typography';
 
 async function loadPosts(id) {
 
-  const res = await fetch(`https://api.rawg.io/api/games/${id}?key=0f37c1fbe7294b1fa22d0a8742173d98`);
+  const url = process.env.url;
+  const key = process.env.apiKey;
+
+  const res = await fetch(`${url}/${id}?key=0f37c1fbe7294b1fa22d0a8742173d98`);
   const data = await res.json();
   return data;
 }

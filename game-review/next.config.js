@@ -7,6 +7,10 @@ const nextConfig = {
         // !! WARN !!
         ignoreBuildErrors: true,
       },
+      env: {
+        apiKey: process.env.apiKey,
+        url: process.env.url,
+      },
 }
 
 module.exports = nextConfig
