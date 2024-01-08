@@ -10,7 +10,7 @@ const SearchForm = () => {
     <form>
       <label htmlFor="id">Enter ID:</label>
       <input
-      className='text-black'
+      className='text-black w-40'
         type="text"
         id="id"
         name='id'
