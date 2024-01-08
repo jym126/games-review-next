@@ -17,7 +17,7 @@ async function loadPosts(id) {
   const url = process.env.url;
   const key = process.env.apiKey;
 
-  const res = await fetch(`${url}?key=0f37c1fbe7294b1fa22d0a8742173d98&search=${id}`);
+  const res = await fetch(`${url}?key=${key}&search=${id}`);
   const data = await res.json();
   return data;
 }
@@ -45,7 +45,7 @@ async function CreateForm (props) {
         <div className="flex flex-wrap">
           {valor[0].map(game => {
             return (
-              <Cards2 game={game}/>
+              <Cards2 key={game.id} game={game}/>
             );
           })}
         </div>
