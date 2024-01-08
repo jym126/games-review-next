@@ -17,7 +17,7 @@ async function loadPosts(id) {
   const url = process.env.url;
   const key = process.env.apiKey;
 
-  const res = await fetch(`${url}/${id}?key=0f37c1fbe7294b1fa22d0a8742173d98`);
+  const res = await fetch(`${url}/${id}?key=${key}`);
   const data = await res.json();
   return data;
 }
