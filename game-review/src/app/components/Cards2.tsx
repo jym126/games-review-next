@@ -5,9 +5,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function Cards2({game}) {
+export default function Cards({game}) {
   return (
-    <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
+    <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 250 }}>
     <CardMedia
       component="img"
       alt='game cards'
@@ -17,18 +17,6 @@ export default function Cards2({game}) {
     <CardContent>
       <Typography gutterBottom variant="h5" component="div">
         {game.name}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {game.description_raw}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Genre:</text> {game.genres[0].name}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Platform:</text> {game.platform}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Developer:</text> {game.developer}
       </Typography>
       <Typography variant="body2" color="text.secondary" className="flex">
         <text className="font-bold mr-2">Release Date:</text> {game.released}

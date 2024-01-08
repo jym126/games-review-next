@@ -1,6 +1,6 @@
 import { Nav } from "../components/Nav";
 
-import Cards from "../components/Cards";
+import Cards2 from "../components/Cards2";
 import Form from "../Form/page";
 import SearchForm from "../SearchForm/page";
 
@@ -17,7 +17,7 @@ async function loadPosts(id) {
   const url = process.env.url;
   const key = process.env.apiKey;
 
-  const res = await fetch(`${url}/${id}?key=${key}`);
+  const res = await fetch(`${url}?key=${key}&search=${id}`);
   const data = await res.json();
   return data;
 }
@@ -29,7 +29,7 @@ async function CreateForm (props) {
   const valor = [];
 
   const posts = await loadPosts(id);
-  valor.push(posts)
+  valor.push(posts.results)
 
   return (
     <>
@@ -42,10 +42,10 @@ async function CreateForm (props) {
         <SearchForm/>
         </div>
 
-        <div className="flex justify-center">
-          {valor.map(game => {
+        <div className="flex flex-wrap">
+          {valor[0].map(game => {
             return (
-              <Cards game={game}/>
+              <Cards2 game={game}/>
             );
           })}
         </div>

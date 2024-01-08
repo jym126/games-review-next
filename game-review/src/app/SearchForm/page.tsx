@@ -8,7 +8,7 @@ const SearchForm = () => {
 
   return (
     <form>
-      <label htmlFor="id">Enter ID:</label>
+      <label htmlFor="id">Enter Game Name: </label>
       <input
       className='text-black w-40'
         type="text"
