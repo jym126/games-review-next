@@ -15,7 +15,7 @@ export default async function Page() {
   const url = process.env.url;
   const key = process.env.apiKey;
 
-  const res = await fetch(`${url}?key=${key}`, {
+  const res = await fetch(`${url}?key=0f37c1fbe7294b1fa22d0a8742173d98`, {
     next: {tags: ['collection']},
     headers: {
       'Access-Control-Allow-Origin': '*',
