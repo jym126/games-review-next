@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Cards({game}) {
   return (
-    <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 250 }}>
+    <Card key={game.id} className="m-2 rounded-xl max-h-svh" sx={{ maxWidth: 250 }}>
     <CardMedia
       component="img"
       alt='game cards'
