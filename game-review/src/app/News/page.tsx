@@ -14,7 +14,6 @@ export default async function Page() {
 
   const url = process.env.url;
   const key = process.env.apiKey;
-  console.log(url)
 
   const res = await fetch(`${url}?key=${key}`, {
     next: {tags: ['collection']},

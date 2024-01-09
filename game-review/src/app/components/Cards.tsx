@@ -1,11 +1,27 @@
+"use client"
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import NewsModal from './Modal';
 
 export default function Cards2({game}) {
+
+
+  const modal = () => {
+
+    return(
+      <div className="App">
+<h1>Hello Coders!</h1>
+<NewsModal />
+</div>
+    )
+  }
+
+
   return (
     <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
     <CardMedia
