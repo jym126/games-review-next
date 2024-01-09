@@ -16,19 +16,20 @@ async function loadPosts(id) {
   const url = process.env.url;
   const key = process.env.apiKey;
 
-  const res = await fetch(`${url}?key=0f37c1fbe7294b1fa22d0a8742173d98&search=${id}`);
+  const res = await fetch(`${url}?key=${key}&search=${id}`);
   const data = await res.json();
   return data;
+
 }
 
 async function CreateForm (props) {
 
-  const id = props.searchParams.id
-
+  let id = props.searchParams.id
   const valor = [];
 
   const posts = await loadPosts(id);
   valor.push(posts.results)
+  
 
   return (
     <>

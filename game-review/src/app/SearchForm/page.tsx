@@ -5,8 +5,6 @@ import { useState } from 'react';
 const SearchForm = () => {
   const [id, setId] = useState('');
 
-  console.log(id);
-
   return (
     <form>
       <label htmlFor="id">Enter Game Name: </label>
