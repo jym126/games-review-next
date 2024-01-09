@@ -1,7 +1,6 @@
 import { Nav } from "../components/Nav";
 
 import Cards2 from "../components/Cards2";
-import Form from "../Form/page";
 import SearchForm from "../SearchForm/page";
 
 import Card from '@mui/material/Card';
