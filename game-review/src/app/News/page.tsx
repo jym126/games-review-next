@@ -33,7 +33,9 @@ return (
   <>
   <div>
   <Nav/>
+  <section className="bg-blue-500 text-white py-2">
   <h1 className="flex justify-center text-3xl">Available Games</h1>
+  </section>
   </div>
   <div className="flex flex-wrap">
       {result.map(game => {

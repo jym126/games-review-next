@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from "react";
 import Modal from "react-modal";
+import AddToFavorite from './AddToFavorite';
 
 export default function Cards({game}) {
   const [showModal, setShowModal] = useState(false);
@@ -48,9 +49,13 @@ export default function Cards({game}) {
         <text className="font-bold mr-2">Release Date:</text> {game.released}
       </Typography>
     </CardContent>
-  <button onClick={() => setShowModal(true)} className='text-blue-400 ml-4'>Screenshots</button>
+    <div className='inline-flex space-x-2'>
+  <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
+  <AddToFavorite/>
+  </div>
   <Modal style={customStyles}  isOpen={showModal}>
     <button onClick={() => setShowModal(false)} className='text-blue-100 text-xl'>Cerrar</button>
+
 
     <Card className="m-2 rounded-xl">
     <CardMedia

@@ -35,12 +35,14 @@ async function CreateForm (props) {
     <>
       <div>
         <Nav />
+        <section className="bg-blue-500 text-white py-4">
         <div className="flex justify-center text-3xl">
         <h1>Find Game</h1>
         </div>
         <div className="flex justify-center text-3xl">
         <SearchForm/>
         </div>
+        </section>
 
         <div className="flex flex-wrap">
           {valor[0].map(game => {
