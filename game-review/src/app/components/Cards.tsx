@@ -24,34 +24,30 @@ export default function Cards({game}) {
     }
   };
 
-  let arrayOfGames = []
-
   const addFavoriteGame = {
     id: '',
     name: '',
     image: ''
   }
-
+  
   function toFavorite (fId, fName, fImage) {
     addFavoriteGame.id =fId
     addFavoriteGame.name = fName
     addFavoriteGame.image = fImage
-
+    
+    let arrayOfGames = []
+  
+    
     try {
       arrayOfGames = JSON.parse(localStorage.getItem("favoriteGames")) || ""
     } catch (error) {}
     
     const cacaGame = [...arrayOfGames, addFavoriteGame]
-    console.log(cacaGame);
     
     setFavoriteGame(JSON.stringify(cacaGame))
 
-  // When user submits the form, save the favorite game to the local storage
-  const addFavorite = () => {
     localStorage.setItem("favoriteGames", favoriteGame)
-  }
 
-  addFavorite()
   
   }
 
