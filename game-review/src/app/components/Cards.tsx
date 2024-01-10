@@ -9,9 +9,13 @@ import Typography from '@mui/material/Typography';
 import { useState } from "react";
 import Modal from "react-modal";
 import AddToFavorite from './AddToFavorite';
+import { FaRegHeart } from "react-icons/fa6";
 
 export default function Cards({game}) {
   const [showModal, setShowModal] = useState(false);
+  // Set the value received from the local storage to a local state
+  const [favoriteGame, setFavoriteGame] = useState("")
+
   const customStyles = {
     content: {
       width: "50%",
@@ -20,8 +24,40 @@ export default function Cards({game}) {
     }
   };
 
+  let arrayOfGames = []
+
+  const addFavoriteGame = {
+    id: '',
+    name: '',
+    image: ''
+  }
+
+  function toFavorite (fId, fName, fImage) {
+    addFavoriteGame.id =fId
+    addFavoriteGame.name = fName
+    addFavoriteGame.image = fImage
+
+    try {
+      arrayOfGames = JSON.parse(localStorage.getItem("favoriteGames")) || ""
+    } catch (error) {}
+    
+    const cacaGame = [...arrayOfGames, addFavoriteGame]
+    console.log(cacaGame);
+    
+    setFavoriteGame(JSON.stringify(cacaGame))
+
+  // When user submits the form, save the favorite game to the local storage
+  const addFavorite = () => {
+    localStorage.setItem("favoriteGames", favoriteGame)
+  }
+
+  addFavorite()
+  
+  }
+
 
   return (
+
     <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
     <CardMedia
       component="img"
@@ -49,9 +85,9 @@ export default function Cards({game}) {
         <text className="font-bold mr-2">Release Date:</text> {game.released}
       </Typography>
     </CardContent>
-    <div className='inline-flex space-x-2'>
+    <div className='inline-flex space-x-24 m-4'>
+    <button onClick={() => toFavorite(game.id, game.name, game.background_image)}>clicar</button>
   <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
-  <AddToFavorite/>
   </div>
   <Modal style={customStyles}  isOpen={showModal}>
     <button onClick={() => setShowModal(false)} className='text-blue-100 text-xl'>Cerrar</button>
