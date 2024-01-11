@@ -10,11 +10,10 @@ import { useState } from "react";
 import Modal from "react-modal";
 import AddToFavorite from './AddToFavorite';
 import { FaRegHeart } from "react-icons/fa6";
+import Swal from 'sweetalert2';
 
 export default function Cards({game}) {
   const [showModal, setShowModal] = useState(false);
-  // Set the value received from the local storage to a local state
-  const [favoriteGame, setFavoriteGame] = useState("")
 
   const customStyles = {
     content: {
@@ -30,23 +29,35 @@ export default function Cards({game}) {
     image: ''
   }
   
-  function toFavorite (fId, fName, fImage) {
+  async function toFavorite (fId, fName, fImage) {
+
     addFavoriteGame.id =fId
     addFavoriteGame.name = fName
     addFavoriteGame.image = fImage
     
-    let arrayOfGames = []
-  
-    
     try {
-      arrayOfGames = JSON.parse(localStorage.getItem("favoriteGames")) || ""
-    } catch (error) {}
-    
-    const cacaGame = [...arrayOfGames, addFavoriteGame]
-    
-    setFavoriteGame(JSON.stringify(cacaGame))
+      let arrayOfGames = [];
+      const ls = await JSON.parse(localStorage.getItem("favoriteGames"))
 
-    localStorage.setItem("favoriteGames", favoriteGame)
+      if(ls != null) {
+        arrayOfGames = ls
+
+        //Evaluate if the game already exists in favorite
+        const index = arrayOfGames.findIndex(x => x.id === fId)
+        console.log(index);
+        if(index !== -1) {
+          Swal.fire('The game already exists')
+          return
+        }
+      }
+
+      const cacaGame = [...arrayOfGames, addFavoriteGame]
+      
+      const myStorage = JSON.stringify(cacaGame)
+      
+      localStorage.setItem("favoriteGames", myStorage)
+
+    } catch (error) {}
 
   
   }
@@ -82,7 +93,7 @@ export default function Cards({game}) {
       </Typography>
     </CardContent>
     <div className='inline-flex space-x-24 m-4'>
-    <button onClick={() => toFavorite(game.id, game.name, game.background_image)}>clicar</button>
+      <FaRegHeart onClick={() => toFavorite(game.id, game.name, game.background_image)}/>
   <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
   </div>
   <Modal style={customStyles}  isOpen={showModal}>
