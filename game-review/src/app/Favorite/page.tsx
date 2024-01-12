@@ -47,7 +47,7 @@ export default function Page() {
                   </Typography>
                 </CardContent>
               </Card>
-</div>
+            </div>
 
           )
         })

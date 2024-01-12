@@ -28,6 +28,8 @@ export default function Cards({ game }) {
     image: ''
   }
 
+  const color = true
+
   async function toFavorite(fId, fName, fImage) {
 
     addFavoriteGame.id = fId
@@ -89,7 +91,12 @@ export default function Cards({ game }) {
         </Typography>
       </CardContent>
       <div className='inline-flex space-x-24 m-4'>
-        <FaRegHeart className="fa fa-question-circle cursor-pointer" size={25} onClick={() => toFavorite(game.id, game.name, game.background_image)} />
+
+          <FaRegHeart
+            className="fa fa-question-circle cursor-pointer" size={25}
+            onClick={() => toFavorite(game.id, game.name, game.background_image)}
+          />
+
         <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
       </div>
       <Modal style={customStyles} isOpen={showModal}>
