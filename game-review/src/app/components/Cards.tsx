@@ -52,7 +52,10 @@ export default function Cards({ game }) {
       
       if (ls != null) {
         arrayOfGames = ls;
+
+      if(id != null) {
         arrayOfIds = id;
+      }
         
         //Evaluate if the game already exists in favorite
         const index = arrayOfGames.findIndex((x) => x.id === fId);
@@ -84,6 +87,9 @@ export default function Cards({ game }) {
     } catch (error) {}
   }
   
+  if(check[0] === null) {
+    check[0] = ''
+  }
   
   return (
     <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
@@ -117,7 +123,7 @@ export default function Cards({ game }) {
       </CardContent>
       <div className="inline-flex space-x-24 m-4">
         <Favorite
-        color={check[0].includes(game.id)? 'secondary' : 'disabled'}
+        color={ check[0].includes(game.id)? 'secondary' : 'disabled'}
           className="fa fa-question-circle cursor-pointer"
           size={25}
           onClick={() => addToFavorite(game.id, game.name, game.background_image)}

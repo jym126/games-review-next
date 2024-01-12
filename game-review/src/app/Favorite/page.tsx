@@ -17,7 +17,12 @@ export default function Page() {
     image: 'https://res.cloudinary.com/dmimages/image/upload/v1705048340/sad_e72dxj.png'
   }]
 
-  const datos = JSON.parse(localStorage.getItem("favoriteGames"));
+  let datos;
+  try {
+    datos = JSON.parse(localStorage.getItem("favoriteGames"));
+  } catch (error) {
+    
+  }
   if (datos) {
     result = datos
   }
