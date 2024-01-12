@@ -29,10 +29,10 @@ export default function Cards2({game}) {
       image ={game.background_image}
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography component={'span'} gutterBottom variant="h5" component="div">
         {game.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
+      <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
         <text className="font-bold mr-2">Release Date:</text> {game.released}
       </Typography>
     </CardContent>
@@ -50,20 +50,20 @@ export default function Cards2({game}) {
     />
 
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography component={'span'} gutterBottom variant="h5" component="div">
         {game.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography component={'span'} variant="body2" color="text.secondary">
         {game.description_raw}
       </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Platform:</text> {game.parent_platforms[0].platform.name}
+      <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+        <parent className="font-bold mr-2">Platform:</parent> {game.parent_platforms[0].platform.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Rating:</text> {game.rating}
+      <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+        <parent className="font-bold mr-2">Rating:</parent> {game.rating}
       </Typography>
-      <Typography variant="body2" color="text.secondary" className="flex">
-        <text className="font-bold mr-2">Release Date:</text> {game.released}
+      <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+        <parent className="font-bold mr-2">Release Date:</parent> {game.released}
       </Typography>
     </CardContent>
   </Card>

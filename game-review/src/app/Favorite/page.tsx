@@ -42,7 +42,7 @@ export default function Page() {
                   image={game.image}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography component={'span'} gutterBottom variant="h5" component="div">
                     {game.name}
                   </Typography>
                 </CardContent>
