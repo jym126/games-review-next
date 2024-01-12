@@ -87,8 +87,12 @@ export default function Cards({ game }) {
     } catch (error) {}
   }
   
-  if(check[0] === null) {
-    check[0] = ''
+  try {    
+    if(check[0] === null || check[0] === undefined) {
+      check[0] = ''
+    }
+  } catch (error) {
+    
   }
   
   return (
