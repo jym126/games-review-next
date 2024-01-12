@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Modal from "react-modal";
-import { FaRegHeart } from "react-icons/fa6";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+import { AccessAlarm, ThreeDRotation, Favorite, FavoriteBorder } from '@mui/icons-material';
+
 
 export default function Cards({ game }) {
   const [showModal, setShowModal] = useState(false);
@@ -18,132 +19,157 @@ export default function Cards({ game }) {
     content: {
       width: "50%",
       margin: "auto",
-      backgroundColor: "#2E4053"
-    }
+      backgroundColor: "#2E4053",
+    },
   };
 
   const addFavoriteGame = {
-    id: '',
-    name: '',
-    image: ''
-  }
+    id: "",
+    name: "",
+    image: "",
+  };
+  
+  //Array to save IDs of favorite's games to mark the favorite heart
+    let check = [JSON.parse(localStorage.getItem("gamesId"))];
 
-  const color = true
-
-  async function toFavorite(fId, fName, fImage) {
-
-    addFavoriteGame.id = fId
-    addFavoriteGame.name = fName
-    addFavoriteGame.image = fImage
-
+  
+  async function addToFavorite(fId, fName, fImage) {
+    addFavoriteGame.id = fId;
+    addFavoriteGame.name = fName;
+    addFavoriteGame.image = fImage;
+    
+    
     try {
-      let arrayOfGames = [];
-      const ls = await JSON.parse(localStorage.getItem("favoriteGames"))
-
+      let arrayOfGames = [];//arrays for games
+      let arrayOfIds = [];//arrays for IDs
+      const ls = await JSON.parse(localStorage.getItem("favoriteGames"));
+      const id = await JSON.parse(localStorage.getItem("gamesId"));
+      
       if (ls != null) {
-        arrayOfGames = ls
-
+        arrayOfGames = ls;
+        arrayOfIds = id;
+        
         //Evaluate if the game already exists in favorite
-        const index = arrayOfGames.findIndex(x => x.id === fId)
-
+        const index = arrayOfGames.findIndex((x) => x.id === fId);
+        
         if (index !== -1) {
-          Swal.fire('The game already exists')
-          return
+          Swal.fire("The game already exists");
+          return;
         }
       }
+      //Save the games to favorite localstorage
+      const cacaGame = [...arrayOfGames, addFavoriteGame];
+      const myStorage = JSON.stringify(cacaGame);
+      localStorage.setItem("favoriteGames", myStorage);
 
-      const cacaGame = [...arrayOfGames, addFavoriteGame]
-      const myStorage = JSON.stringify(cacaGame)
-      localStorage.setItem("favoriteGames", myStorage)
-
-    } catch (error) { }
-
+      //Save the IDs of the games in favorites
+      const idGame = [...arrayOfIds, fId];
+      const myIdStorage = JSON.stringify(idGame);
+      localStorage.setItem("gamesId", myIdStorage);
+      
+      let timerInterval;
+      Swal.fire({
+        title: "Game saved to favorite",
+        timer: 2000,
+        timerProgressBar: true,
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      });
+    } catch (error) {}
   }
-
-
+  
+  
   return (
-
     <Card key={game.id} className="m-2 rounded-xl" sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt='game cards'
+        alt="game cards"
         height="140"
         image={game.background_image}
-      />
+        onClick={() => setShowModal(true)}
+        />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography component={'span'} gutterBottom variant="h5" component="div">
           {game.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography component={'span'} variant="body2" color="text.secondary">
           {game.description_raw}
         </Typography>
-        <Typography variant="body2" color="text.secondary" className="flex">
-          <text className="font-bold mr-2">Genre:</text> {game.genres[0].name}
+        <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+          <p className="font-bold mr-2">Genre:</p> {game.genres[0].name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" className="flex">
-          <text className="font-bold mr-2">Platform:</text> {game.parent_platforms[0].platform.name}
+        <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+          <p className="font-bold mr-2">Platform:</p>{" "}
+          {game.parent_platforms[0].platform.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" className="flex">
-          <text className="font-bold mr-2">Rating:</text> {game.rating}
+        <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+          <p className="font-bold mr-2">Rating:</p> {game.rating}
         </Typography>
-        <Typography variant="body2" color="text.secondary" className="flex">
-          <text className="font-bold mr-2">Release Date:</text> {game.released}
+        <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+          <p className="font-bold mr-2">Release Date:</p> {game.released}
         </Typography>
       </CardContent>
-      <div className='inline-flex space-x-24 m-4'>
-
-          <FaRegHeart
-            className="fa fa-question-circle cursor-pointer" size={25}
-            onClick={() => toFavorite(game.id, game.name, game.background_image)}
-          />
-
-        <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
+      <div className="inline-flex space-x-24 m-4">
+        <Favorite
+        color={check[0].includes(game.id)? 'secondary' : 'disabled'}
+          className="fa fa-question-circle cursor-pointer"
+          size={25}
+          onClick={() => addToFavorite(game.id, game.name, game.background_image)}
+        />
       </div>
       <Modal style={customStyles} isOpen={showModal}>
-        <button onClick={() => setShowModal(false)} className='text-blue-100 text-xl'>Cerrar</button>
-
+        <button
+          onClick={() => setShowModal(false)}
+          className="text-blue-100 text-xl"
+        >
+          Cerrar
+        </button>
 
         <Card className="m-2 rounded-xl">
           <CardMedia
             component="img"
-            alt='game cards'
+            alt="game cards"
             height="140"
             image={game.background_image}
           />
           <CardMedia
             component="img"
-            alt='game cards'
+            alt="game cards"
             height="140"
             image={game.short_screenshots[1].image}
           />
           <CardMedia
             component="img"
-            alt='game cards'
+            alt="game cards"
             height="140"
             image={game.short_screenshots[2].image}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography component={'span'} gutterBottom variant="h5" component="div">
               {game.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography component={'span'} variant="body2" color="text.secondary">
               {game.description_raw}
             </Typography>
-            <Typography variant="body2" color="text.secondary" className="flex">
-              <text className="font-bold mr-2">Genre:</text> {game.genres[0].name}
+            <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+              <p className="font-bold mr-2">Genre:</p>{" "}
+              {game.genres[0].name}
             </Typography>
-            <Typography variant="body2" color="text.secondary" className="flex">
-              <text className="font-bold mr-2">Platform:</text> {game.parent_platforms[0].platform.name}
+            <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+              <p className="font-bold mr-2">Platform:</p>{" "}
+              {game.parent_platforms[0].platform.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary" className="flex">
-              <text className="font-bold mr-2">Rating:</text> {game.rating}
+            <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+              <p className="font-bold mr-2">Rating:</p> {game.rating}
             </Typography>
-            <Typography variant="body2" color="text.secondary" className="flex">
-              <text className="font-bold mr-2">Release Date:</text> {game.released}
+            <Typography component={'span'} variant="body2" color="text.secondary" className="flex">
+              <p className="font-bold mr-2">Release Date:</p>{" "}
+              {game.released}
             </Typography>
           </CardContent>
         </Card>
       </Modal>
     </Card>
-  )
+  );
 }
