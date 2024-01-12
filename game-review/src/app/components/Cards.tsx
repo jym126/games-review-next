@@ -89,7 +89,7 @@ export default function Cards({ game }) {
   
   try {    
     if(check[0] === null || check[0] === undefined) {
-      check[0] = ''
+      check[0] = '4298'
     }
   } catch (error) {
     
