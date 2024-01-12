@@ -32,7 +32,7 @@ export default function Cards({ game }) {
   let check;
   //Array to save IDs of favorite's games to mark the favorite heart
   try {
-    check = [JSON.parse(localStorage.getItem("gamesId"))];//En Next se debe poner localstorage en try catch o da error
+    check = JSON.parse(localStorage.getItem("gamesId"));//En Next se debe poner localstorage en try catch o da error
   } catch (error) {
     
   }
@@ -88,8 +88,8 @@ export default function Cards({ game }) {
   }
   
   try {    
-    if(check[0] === null || check[0] === undefined) {
-      check[0] = '4298'
+    if(check === null || check === undefined) {
+      check = ['']
     }
   } catch (error) {
     
@@ -127,7 +127,7 @@ export default function Cards({ game }) {
       </CardContent>
       <div className="inline-flex space-x-24 m-4">
         <Favorite
-        color={ check[0].includes(game.id)? 'secondary' : 'disabled'}
+        color={ check.includes(game.id)? 'secondary' : 'disabled'}
           className="fa fa-question-circle cursor-pointer"
           size={25}
           onClick={() => addToFavorite(game.id, game.name, game.background_image)}
