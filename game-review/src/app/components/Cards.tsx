@@ -28,9 +28,14 @@ export default function Cards({ game }) {
     name: "",
     image: "",
   };
-  
+
+  let check;
   //Array to save IDs of favorite's games to mark the favorite heart
-    let check = [JSON.parse(localStorage.getItem("gamesId"))];
+  try {
+    check = [JSON.parse(localStorage.getItem("gamesId"))];//En Next se debe poner localstorage en try catch o da error
+  } catch (error) {
+    
+  }
 
   
   async function addToFavorite(fId, fName, fImage) {
