@@ -93,7 +93,7 @@ export default function Cards({game}) {
       </Typography>
     </CardContent>
     <div className='inline-flex space-x-24 m-4'>
-      <FaRegHeart onClick={() => toFavorite(game.id, game.name, game.background_image)}/>
+      <h2><FaRegHeart className="fa fa-question-circle cursor-pointer" size={25} onClick={() => toFavorite(game.id, game.name, game.background_image)}/></h2>
   <button onClick={() => setShowModal(true)} className='text-blue-600 ml-4'>Screenshots</button>
   </div>
   <Modal style={customStyles}  isOpen={showModal}>
