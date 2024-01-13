@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Modal from "react-modal";
 import Swal from "sweetalert2";
-import { AccessAlarm, ThreeDRotation, Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Favorite } from '@mui/icons-material';
 
 
 export default function Cards({ game }) {
@@ -78,7 +78,7 @@ export default function Cards({ game }) {
       let timerInterval;
       Swal.fire({
         title: "Game saved to favorite",
-        timer: 2000,
+        timer: 1500,
         timerProgressBar: true,
         willClose: () => {
           clearInterval(timerInterval);
